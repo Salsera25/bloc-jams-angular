@@ -13,7 +13,7 @@
             })
             .state('album', {
                 url: '/album.html',
-                controller: 'AlbumCtrl as album',
+                controller: 'AlbumCtrl as collection',
                 templateUrl: '/templates/album.html'
             })
             .state('collection', {
@@ -22,7 +22,7 @@
                 templateUrl: '/templates/collection.html'
             });
     }
-angular
+  angular
     .module('blocJams', ['ui.router'])
     .config(config);
 })();
