@@ -1,5 +1,5 @@
  (function() {
-     function Fixtures() {
+ 	function Fixtures() {
          var Fixtures = {};
          var albumPicasso = {
              title: 'The Colors',
@@ -34,21 +34,18 @@
         Fixtures.getAlbum = function() {
             return albumPicasso;
             };
-         
-         return Fixtures;
-     }
+    
      
-         Fixtures.getCollection = function(numberOfAlbums) {
-             //numberOfAlbums
-            this.albums = [];
-                for (var i = 0; i < 12; i++) {
-                this.albums.push(angular.copy(albumPicasso));
-            };
-         
-          return Fixtures;
-     }
- 
-     angular
+        Fixtures.getCollection = function(numberOfAlbums) {
+            albumCollection = [];
+            for (var i = 0; i < numberOfAlbums; i++) {
+            albumCollection.push(angular.copy(albumPicasso));
+            }
+           return albumCollection;
+         };
+       return Fixtures;
+       }
+    angular
          .module('blocJams')
          .factory('Fixtures', Fixtures);
  })();
