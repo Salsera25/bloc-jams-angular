@@ -9,7 +9,7 @@
 		  var currentBuzzObject = null;
 		   
 		  /**
-		  * @function setSong
+		  * @function setSong - private function
 		  * @desc Stops currently playing song and loads new audio file as currentBuzzObject
 		  * @param {Object} song
 		  */
@@ -27,7 +27,7 @@
 			  SongPlayer.currentSong = song;
  		  };
 		 
-		 /**
+		/**
 		* @function getSongIndex  
 		* @descr Gets the index of a song
 		* @param {Object} song
@@ -47,14 +47,26 @@
 		* @desc starts playing currentBuzzObject 
 		* @param {Object} song
 		*/  
-		var playSong = function(song) {
+		
+		 var playSong = function(song) {
 			  if (currentBuzzObject) {
         		currentBuzzObject.play(); 
         		song.playing = true;
 			  }
  		  };
 		 
-		 
+         /** Assignment 8 services
+		 * @function stopSong - private function
+		 * @desc Stops currently playing song and loads new audio file as currentBuzzObject
+		 * @param {Object} song
+		 */
+		 var stopSong = function(song) {
+			  if (currentBuzzObject) {
+        		currentBuzzObject.stop(); 
+        		song.playing = null;
+			  }
+ 		  };
+		 	 
 		 
 		  /**ASSIGNMENT CHECKPOINT 7
 		  /**
@@ -99,6 +111,24 @@
 			  currentSongIndex--;
 			  
 			  if (currentSongIndex < 0) {
+				  currentBuzzObject.stop();
+				  SongPlayer.currentSong.playing = null;
+			  } else {
+         			var song = currentAlbum.songs[currentSongIndex];
+         			setSong(song);
+         			playSong(song);
+     		  }
+ 		  };
+		 
+		  /**
+		  * @function next - public method 
+		  * @desc plays next song
+		  */  
+		  SongPlayer.next = function() {
+     		  var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+			  currentSongIndex++;
+			  
+			  if (currentSongIndex >= SongPlayer.currentSong.length) {
 				  currentBuzzObject.stop();
 				  SongPlayer.currentSong.playing = null;
 			  } else {
